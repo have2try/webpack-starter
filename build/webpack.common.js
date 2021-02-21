@@ -13,7 +13,12 @@ module.exports = {
         path: path.resolve(__dirname, '../dist'),
         publicPath: '',
     },
-
+    resolve: {
+        extensions: ['.js', '.vue', '.json'],
+        alias: {
+            '@': path.resolve('src'),
+        }
+    },
     plugins: [
         new HtmlWebpackPlugin({
             title: 'vue starter v3 starter',
