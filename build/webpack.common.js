@@ -13,6 +13,13 @@ module.exports = {
         path: path.resolve(__dirname, '../dist'),
         publicPath: '',
     },
+    resolve: {
+        extensions: ['.js', '.vue', '.json'],
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js',
+            '@': path.resolve('src'),
+        }
+    },
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Webpack starter',
