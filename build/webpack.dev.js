@@ -9,5 +9,6 @@ module.exports = merge(common, {
         hot: true,
         open: true,
         writeToDisk: true,
+        historyApiFallback: true,
     },
 });
