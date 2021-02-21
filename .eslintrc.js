@@ -9,12 +9,4 @@ module.exports = {
         "sourceType": module
     },
     "rules": {},
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
-    "lint-staged": {
-        "src/**/*.{jsx,txs,ts,js,vue}": ["eslint --fix", "git add"]
-    }
 };
