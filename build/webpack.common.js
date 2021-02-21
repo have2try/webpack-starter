@@ -25,7 +25,17 @@ module.exports = {
         }, {
             test: /\.(png|jpe?g|webp|git|svg|)$/i,
             type: 'asset/resource',
-        }],
+        }, {
+            test: /\.m?js$/,
+            exclude: /(node_modules|bower_components)/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env'],
+                    plugins: ['@babel/plugin-proposal-object-rest-spread'],
+                },
+            },
+        }, ],
     },
     optimization: {
         moduleIds: 'deterministic',
