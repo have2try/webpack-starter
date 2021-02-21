@@ -1,19 +1,20 @@
 module.exports = {
-    'env': {
-        'browser': true,
-        'es2021': true,
-        'node': true,
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es2021": true,
+        "node": true
     },
-    'extends': [
-        'google',
+    "extends": [
+        "eslint:recommended",
+        "plugin:vue/essential"
     ],
-    'parserOptions': {
-        'ecmaVersion': 12,
-        "sourceType": "module",
+    "parserOptions": {
+        "ecmaVersion": 12
     },
-    'rules': {
-        "eol-last": 0,
-        "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
-    },
-
+    "plugins": [
+        "vue"
+    ],
+    "rules": {
+    }
 };
