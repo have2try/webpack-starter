@@ -11,7 +11,7 @@ module.exports = {
     },
     entry: './src/index.js',
     output: {
-        filename: '[name].bundle.js',
+        filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: '',
     },
@@ -33,9 +33,17 @@ module.exports = {
         }, ],
     },
     optimization: {
+        moduleIds: 'deterministic',
         runtimeChunk: 'single',
         splitChunks: {
-            chunks: 'all',
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all',
+                },
+            },
         },
     },
+
 };
