@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://webpack-starter/./src/index.css"],"names":[],"mappings":"AAAA;IACI,iDAAqC;IACrC,sBAAsB;AAC1B,C","file":"app.css","sourcesContent":["body {\n    background-image: url(../src/bg.webp);\n    background-size: cover;\n}"],"sourceRoot":""}
