@@ -6,7 +6,7 @@ const { VueLoaderPlugin } = require('vue-loader-v16');
 const webpack = require('webpack');
 module.exports = {
     entry: {
-        app: './src/main.js',
+        app: './src/main.ts',
     },
     output: {
         filename: '[name].[contenthash].js',
@@ -14,14 +14,14 @@ module.exports = {
         publicPath: '',
     },
     resolve: {
-        extensions: ['.js', '.vue', '.json'],
+        extensions: ['.js', '.vue', '.json', '.ts','tsx'],
         alias: {
             '@': path.resolve('src'),
         }
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'vue starter v3 starter',
+            title: 'vue starter v3',
             favicon: path.resolve(__dirname, '../public/favicon.ico'),
             template: path.resolve(__dirname, '../public/index.html'),
         }),
@@ -59,7 +59,14 @@ module.exports = {
         }, {
             test: /\.vue$/,
             loader: 'vue-loader-v16'
-        }],
+        },{
+            test: /\.tsx?$/,
+            use: [{
+                loader: "ts-loader",
+                options: { appendTsSuffixTo: [/\.vue$/] }
+            }],
+            exclude: /node_modules/,
+          },],
     },
     optimization: {
         moduleIds: 'deterministic',
