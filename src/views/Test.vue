@@ -1,34 +1,29 @@
 <template>
   <div class="test">
     <h1>This is an test page.</h1>
-    <ul>
-      <li>Name: {{ username }}</li>
-      <li>age: {{ age }}</li>
-      <li>gender: {{ gender }}</li>
-    </ul>
+    <button v-on:click="counter">
+      {{ x }}
+    </button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, toRefs } from "vue";
+import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
 
 export default defineComponent({
   setup() {
-    const profile = {
-      username: "Suzy",
-      age: 27,
-      gender: "female",
-    };
-
-    const profileRefs = toRefs(reactive(profile));
-
+    let msg = "This is an test page.";
+    let x = ref(0);
+    function counter() {
+      x.value++;
+    }
     onMounted(() => {
-      profileRefs.age.value = 30;
-      profile.age = 33;
+      counter();
     });
-
     return {
-      ...profileRefs,
+      x,
+      msg,
+      counter,
     };
   },
 });
