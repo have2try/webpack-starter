@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
+import { defineComponent, onMounted, ref, watch } from "vue";
 
 export default defineComponent({
   setup() {
@@ -20,6 +20,11 @@ export default defineComponent({
     onMounted(() => {
       counter();
     });
+
+    watch(x, (newVal, oldVal) => {
+      console.log({ oldVal, newVal });
+    });
+
     return {
       x,
       msg,
