@@ -14,12 +14,18 @@ module.exports = {
         publicPath: '',
     },
     resolve: {
-        extensions: ['.js', '.vue', '.json', '.ts','tsx'],
+        extensions: ['.js', '.vue', '.json', '.ts', 'tsx'],
         alias: {
             '@': path.resolve('src'),
         }
     },
     plugins: [
+        new webpack.DefinePlugin({
+            __VUE_OPTIONS_API__: false,
+            __VUE_PROD_DEVTOOLS__: false,
+            'process.env.BASE_URL': JSON.stringify(path.resolve(__dirname, '/')),
+
+        }),
         new HtmlWebpackPlugin({
             title: 'vue starter v3',
             favicon: path.resolve(__dirname, '../public/favicon.ico'),
@@ -28,10 +34,6 @@ module.exports = {
         new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
         new MiniCssExtractPlugin(),
         new VueLoaderPlugin(),
-        new webpack.DefinePlugin({
-            __VUE_OPTIONS_API__: false,
-            __VUE_PROD_DEVTOOLS__: false,
-        }),
     ],
     module: {
         rules: [{
@@ -59,14 +61,14 @@ module.exports = {
         }, {
             test: /\.vue$/,
             loader: 'vue-loader-v16'
-        },{
+        }, {
             test: /\.tsx?$/,
             use: [{
                 loader: "ts-loader",
                 options: { appendTsSuffixTo: [/\.vue$/] }
             }],
             exclude: /node_modules/,
-          },],
+        },],
     },
     optimization: {
         moduleIds: 'deterministic',

@@ -7,7 +7,10 @@ module.exports = merge(common, {
     devServer: {
         contentBase: './dist',
         hot: true,
-        open: true,
+        host: '0.0.0.0',
+        port: '23333',
+        open: 'Google Chrome',
+        compress: true,
         writeToDisk: true,
         historyApiFallback: true,
     },
