@@ -1,51 +1,27 @@
 <template>
   <div class="test">
-    <h1>This is an {{ pageName }}.</h1>
+    <h1>This is an test page.</h1>
+    <p>x = {{ x }}</p>
+    <p>y = {{ y }}</p>
   </div>
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  onBeforeMount,
-  onMounted,
-  onBeforeUpdate,
-  onUpdated,
-  onBeforeUnmount,
-  onUnmounted,
-} from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 
 export default defineComponent({
   setup() {
-    let pageName = "test page";
-    console.log("setup %s", pageName);
-
-    onBeforeMount(() => {
-      console.log("onBeforeMount %s", pageName);
-    });
+    let x = 0;
+    let y = ref(0);
 
     onMounted(() => {
-      console.log("onMounted %s", pageName);
-    });
-
-    onBeforeUpdate(() => {
-      console.log("onBeforeUpdate %s", pageName);
-    });
-
-    onUpdated(() => {
-      console.log("onUpdated %s", pageName);
-    });
-
-    onBeforeUnmount(() => {
-      console.log("onBeforeUnmount %s", pageName);
-    });
-
-    onUnmounted(() => {
-      console.log("onUnmounted %s", pageName);
+      x++;
+      y.value++;
     });
 
     return {
-      pageName,
+      x,
+      y,
     };
   },
 });
