@@ -1,34 +1,36 @@
 <template>
   <div class="test">
     <h1>This is an test page.</h1>
-    <button v-on:click="counter">
-      {{ x }}
-    </button>
+    <button v-on:click="counter">z = {{ z }}</button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch } from "vue";
+import {
+  computed,
+  ComputedRef,
+  defineComponent,
+  onMounted,
+  ref,
+  watch,
+} from "vue";
 
 export default defineComponent({
   setup() {
-    let msg = "This is an test page.";
-    let x = ref(0);
-    function counter() {
-      x.value++;
-    }
-    onMounted(() => {
-      counter();
+    let x = ref(2);
+    let y = ref(3);
+
+    let z: ComputedRef = computed(() => {
+      return x.value + y.value;
     });
 
-    watch(x, (newVal, oldVal) => {
-      console.log({ oldVal, newVal });
-    });
+    const counter = () => {
+      x.value++;
+    };
 
     return {
-      x,
-      msg,
       counter,
+      z,
     };
   },
 });
