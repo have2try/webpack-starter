@@ -1,27 +1,34 @@
 <template>
   <div class="test">
     <h1>This is an test page.</h1>
-    <p>x = {{ x }}</p>
-    <p>y = {{ y }}</p>
+    <ul>
+      <li>Name: {{ username }}</li>
+      <li>age: {{ age }}</li>
+      <li>gender: {{ gender }}</li>
+    </ul>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, onMounted, reactive, toRefs } from "vue";
 
 export default defineComponent({
   setup() {
-    let x = 0;
-    let y = ref(0);
+    const profile = {
+      username: "Suzy",
+      age: 27,
+      gender: "female",
+    };
+
+    const profileRefs = toRefs(reactive(profile));
 
     onMounted(() => {
-      x++;
-      y.value++;
+      profileRefs.age.value = 30;
+      profile.age = 33;
     });
 
     return {
-      x,
-      y,
+      ...profileRefs,
     };
   },
 });
